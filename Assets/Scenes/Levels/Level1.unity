@@ -24325,6 +24325,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraParent
       objectReference: {fileID: 0}
+    - target: {fileID: 2838034488194178678, guid: cf262e1cee5e6ec47b2ef57de1fa73c7,
+        type: 3}
+      propertyPath: cameraSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2838034488194178679, guid: cf262e1cee5e6ec47b2ef57de1fa73c7,
         type: 3}
       propertyPath: m_RootOrder
