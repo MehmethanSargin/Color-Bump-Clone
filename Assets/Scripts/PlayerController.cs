@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool canMove, gameOver, finish;
 
+    
+    public GameObject breakablePlayer;
+
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
@@ -35,11 +38,14 @@ public class PlayerController : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                Time.timeScale = 1;
+                Time.fixedDeltaTime = Time.timeScale * 0.02f;
             }
         }else if (!canMove && !finish)
         {
             if (Input.GetMouseButtonDown(0))
             {
+                FindObjectOfType<GameManager>().RemoveUI();
                 canMove = true;
             }
         }
@@ -70,18 +76,29 @@ public class PlayerController : MonoBehaviour
 
     private void GameOver()
     {
+        GameObject shatterShpere = Instantiate(breakablePlayer, transform.position, Quaternion.identity);
+        foreach (Transform t in shatterShpere.transform)
+        {
+            t.GetComponent<Rigidbody>().AddForce(Vector3.forward * body.velocity.magnitude, ForceMode.Impulse);
+        }
         canMove = false;
         gameOver = true;
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
+
+        Time.timeScale = .3f;
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
     }
 
     private void OnCollisionEnter(Collision target)
     {
         if (target.gameObject.tag == "Enemy")
         {
-            Debug.Log("GameOver");
-            GameOver();
+            if (!gameOver)
+            {
+                Debug.Log("GameOver");
+                GameOver();
+            } 
         }
     }
 

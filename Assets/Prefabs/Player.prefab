@@ -110,6 +110,11 @@ MonoBehaviour:
   sensivity: 0.16
   clampDelta: 81.92
   bounds: 5
+  canMove: 0
+  gameOver: 0
+  finish: 0
+  breakablePlayer: {fileID: 2498606393274043134, guid: 6e592bccb20a93b4e9134e7017397992,
+    type: 3}
 --- !u!54 &6306848815640125999
 Rigidbody:
   m_ObjectHideFlags: 0
