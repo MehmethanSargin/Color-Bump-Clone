@@ -11,7 +11,11 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
-        transform.position += Vector3.forward * cameraSpeed;
-        camVelocity = Vector3.forward * cameraSpeed;
+        if (FindObjectOfType<PlayerController>().canMove)
+        {
+            transform.position += Vector3.forward * cameraSpeed;
+            camVelocity = Vector3.forward * cameraSpeed;
+        }
+        
     }
 }
