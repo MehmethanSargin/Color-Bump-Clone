@@ -9,9 +9,16 @@ public class CameraFollow : MonoBehaviour
     [SerializeField]
     public Vector3 camVelocity;
 
+    PlayerController playerController;
+
+    private void Start()
+    {
+        playerController = FindObjectOfType<PlayerController>();
+    }
+
     private void Update()
     {
-        if (FindObjectOfType<PlayerController>().canMove)
+        if (playerController.canMove)
         {
             transform.position += Vector3.forward * cameraSpeed;
             camVelocity = Vector3.forward * cameraSpeed;

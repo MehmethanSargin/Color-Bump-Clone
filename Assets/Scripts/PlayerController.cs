@@ -21,9 +21,18 @@ public class PlayerController : MonoBehaviour
     
     public GameObject breakablePlayer;
 
+    CameraFollow cameraFollow;
+
+    GameManager gameManager;
+
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
+    }
+    private void Start()
+    {
+        cameraFollow = FindObjectOfType<CameraFollow>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     private void Update()
@@ -31,7 +40,7 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -bounds, bounds), transform.position.y, transform.position.z);
         if (canMove)
         {
-            transform.position += FindObjectOfType<CameraFollow>().camVelocity;
+            transform.position += cameraFollow.camVelocity;
         }
         if (!canMove && gameOver)
         {
@@ -45,7 +54,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                FindObjectOfType<GameManager>().RemoveUI();
+                gameManager.RemoveUI();
                 canMove = true;
             }
         }

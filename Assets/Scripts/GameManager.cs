@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        #region // Find GameObjects
         currentLevelText = GameObject.Find("CurrentLevelText").GetComponent<Text>();
         nextLevelText = GameObject.Find("NextLevelText").GetComponent<Text>();
         fill = GameObject.Find("Fill").GetComponent<Image>();
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour
         hand = GameObject.Find("Hand");
 
         levelNumber = GameObject.Find("LevelNumber").GetComponent<TextMesh>();
+        #endregion
     }
 
     private void Start()
